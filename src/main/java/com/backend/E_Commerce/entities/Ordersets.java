@@ -82,4 +82,19 @@ public class Ordersets {
     public void setInvoiceUrl(String invoiceUrl) {
         this.invoiceUrl = invoiceUrl;
     }
+
+    @Override
+    public String toString() {
+        String res = "";
+        List<Orders> arr = this.getOrders();
+        res += "**********************************************************************\n";
+        res += "|\t\t Product id \t\t Price \t\t Quantity \t\t Value \t\t|\n";
+        res += "**********************************************************************\n";
+        for(Orders order : arr){
+            res += "**********************************************************************\n";
+            res += "|\t\t" + order.toString() + "\t\t|\n";            
+            res += "**********************************************************************\n";
+        }        
+        return res;
+    }
 }

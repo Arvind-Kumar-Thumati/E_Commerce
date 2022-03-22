@@ -1,32 +1,37 @@
 package com.backend.E_Commerce.config;
 
-import java.util.ArrayList;
-import java.util.List;
+// import java.util.List;
 
-import com.backend.E_Commerce.entities.Addresses;
-import com.backend.E_Commerce.entities.CartItems;
-import com.backend.E_Commerce.entities.Categories;
-import com.backend.E_Commerce.entities.Ordersets;
-import com.backend.E_Commerce.entities.Products;
-import com.backend.E_Commerce.entities.Sellers;
-import com.backend.E_Commerce.entities.Users;
+// import com.backend.E_Commerce.entities.Addresses;
+// import com.backend.E_Commerce.entities.CartItems;
+// import com.backend.E_Commerce.entities.Categories;
+// import com.backend.E_Commerce.entities.Ordersets;
+// import com.backend.E_Commerce.entities.Products;
+// import com.backend.E_Commerce.entities.Sellers;
+// import com.backend.E_Commerce.entities.Users;
+import com.backend.E_Commerce.repositories.CategoriesRepo;
 import com.backend.E_Commerce.repositories.ProductsRepo;
 import com.backend.E_Commerce.repositories.SellersRepo;
 import com.backend.E_Commerce.repositories.UsersRepo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+// import org.slf4j.Logger;
+// import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class LoadDB {
-    private static final Logger log = LoggerFactory.getLogger(LoadDB.class);
+    // private static final Logger log = LoggerFactory.getLogger(LoadDB.class);
 
     @Bean
-    CommandLineRunner initDatabase(UsersRepo usersRepo, ProductsRepo productsRepo, SellersRepo sellersRepo) {
-        return args -> {
+    CommandLineRunner initDatabase(UsersRepo usersRepo, ProductsRepo productsRepo, SellersRepo sellersRepo, CategoriesRepo categoriesRepo) {
+        return args -> {            
+            // for(int i=0; i<1000000; i++){
+            //     categoriesRepo.save(new Categories("category"+i));
+            // }
+
+
             // populate sellers db
             // List<Category> categories = new ArrayList<Category>();
             // categories.add(new Category("Smartphones"));
@@ -55,18 +60,18 @@ public class LoadDB {
             // log.info("Preloading sellers " + sellersRepo.save(new Sellers("Samsung retailer 1", "samsungUser", "samsungPass", 4.1f, address, LOP)));
 
 
-            List<Addresses> LOA = new ArrayList<Addresses>();
-            LOA.add(new Addresses(null, 2, "11/2", "home of 2", "homecity1", "homestate1", 612345));
-            LOA.add(new Addresses(null, 2, "22/3", "home2 of 2", "homecity2", "homestate2", 712345));
+            // List<Addresses> LOA = new ArrayList<Addresses>();
+            // LOA.add(new Addresses(null, 2, "11/2", "home of 2", "homecity1", "homestate1", 612345));
+            // LOA.add(new Addresses(null, 2, "22/3", "home2 of 2", "homecity2", "homestate2", 712345));
 
-            List<CartItems> LOC = new ArrayList<CartItems>();
+            // List<CartItems> LOC = new ArrayList<CartItems>();
             
             // LOC.add( new CartItems(1, productsRepo.findById(3).get(), 2, 34000f));
             // LOC.add( new CartItems(1, productsRepo.findById(4).get(), 1, 15000f));        
 
             // List<OrderSet> LOO = new ArrayList<OrderSet>();
             // LOO.add(new OrderSet());
-            Users user = new Users("user2", "pass2", "first_name2", "last_name2", "2345678901", LOA, LOC, new ArrayList<Ordersets>(), 0f);
+            // Users user = new Users("user2", "pass2", "first_name2", "last_name2", "2345678901", LOA, LOC, new ArrayList<Ordersets>(), 0f);
             
             // log.info("Preloading Users "+ usersRepo.save(user));
             // // populate products db

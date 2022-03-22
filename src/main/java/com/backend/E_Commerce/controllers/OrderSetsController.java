@@ -1,9 +1,13 @@
 package com.backend.E_Commerce.controllers;
 
 import com.backend.E_Commerce.repositories.OrderSetsRepo;
+import com.backend.E_Commerce.repositories.UsersRepo;
+import com.backend.E_Commerce.service.MailService;
 // import com.backend.E_Commerce.repositories.OrdersRepo;
 import com.backend.E_Commerce.entities.Ordersets;
+import com.backend.E_Commerce.entities.Users;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +30,12 @@ public class OrderSetsController {
     @Autowired
     private OrderSetsRepo orderSetsRepo;
 
+    @Autowired
+    private UsersRepo usersRepo;
+
+    @Autowired
+    private MailService mailService;
+
     @GetMapping
     List<Ordersets> getOrderSets(){
         return orderSetsRepo.findAll();
@@ -45,6 +55,28 @@ public class OrderSetsController {
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Requested resource does not exists");
     }
+
+    @GetMapping("/{ordersets_id}/invoice/mail")
+    String getInvoiceToMail(@PathVariable Integer ordersets_id) throws IOException{
+        Optional<Ordersets> optionalOrdersets =  orderSetsRepo.findById(ordersets_id);
+        if( optionalOrdersets.isPresent()){
+            Ordersets orderset = optionalOrdersets.get();
+            Users user = usersRepo.getById(orderset.getUser_id());
+            mailService.sendEmail(user.getFirstName() + user.getLastName(), orderset.toString());
+            return orderset.toString();
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Requested resource does not exists");
+    }
+
+    @GetMapping("/{ordersets_id}/invoice")
+    String getInvoice(@PathVariable Integer ordersets_id) throws IOException{
+        Optional<Ordersets> optionalOrdersets =  orderSetsRepo.findById(ordersets_id);
+        if( optionalOrdersets.isPresent()){
+            return optionalOrdersets.get().toString();                                    
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Requested resource does not exists");
+    }
+
     @PostMapping
     Ordersets createOrderSets(@RequestBody Ordersets orderSet){
         return orderSetsRepo.save(orderSet);

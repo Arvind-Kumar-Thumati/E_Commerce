@@ -1,10 +1,11 @@
 package com.backend.E_Commerce.entities;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+// import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,14 +30,14 @@ public class Products {
     public Integer id;
     private String name;
     // Need to implement random code
-    private String productCode;
+    private String productCode = UUID.randomUUID().toString();
     private Integer price;
     
     private Integer sellerId;
     private Integer stockAvailable;
     private String imageUrl;
     
-    @ManyToMany(targetEntity = Categories.class, fetch = FetchType.LAZY, cascade = {CascadeType.MERGE ,CascadeType.DETACH })    
+    @ManyToMany(targetEntity = Categories.class, cascade = {CascadeType.MERGE ,CascadeType.DETACH })    
     @JoinTable(
         name = "category_product_table"
         ,joinColumns = @JoinColumn( name="products_id", referencedColumnName = "id")
