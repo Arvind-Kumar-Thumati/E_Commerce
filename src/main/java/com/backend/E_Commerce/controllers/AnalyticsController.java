@@ -6,9 +6,9 @@ import java.util.List;
 
 import com.backend.E_Commerce.config.RabbitmqConfig;
 import com.backend.E_Commerce.entities.Analytics;
-import com.backend.E_Commerce.entities.RedisAnalytics;
+// import com.backend.E_Commerce.entities.RedisAnalytics;
 import com.backend.E_Commerce.repositories.AnalyticsRepo;
-import com.backend.E_Commerce.repositories.RedisAnalyticsRepo;
+// import com.backend.E_Commerce.repositories.RedisAnalyticsRepo;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;

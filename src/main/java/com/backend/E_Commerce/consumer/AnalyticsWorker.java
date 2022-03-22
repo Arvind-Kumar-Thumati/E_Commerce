@@ -1,7 +1,7 @@
 package com.backend.E_Commerce.consumer;
 
 import com.backend.E_Commerce.config.RabbitmqConfig;
-import com.backend.E_Commerce.config.RabbitmqConfig.*;
+// import com.backend.E_Commerce.config.RabbitmqConfig.*;
 import com.backend.E_Commerce.entities.RedisAnalytics;
 import com.backend.E_Commerce.repositories.RedisAnalyticsRepo;
 
