@@ -12,12 +12,14 @@ import com.sendgrid.Request;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MailService {
     private static Logger log = LoggerFactory.getLogger(MailService.class);
 
+    @Value(value = "${sendgrid.apiKey}")
     private static final String apiKey = "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";
     private static final Email fromAddress = new Email("emailintegration6@gmail.com");
     private static final String subject = "Sample Test";    
