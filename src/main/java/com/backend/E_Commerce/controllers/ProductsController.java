@@ -8,7 +8,10 @@ import com.backend.E_Commerce.entities.Products;
 import com.backend.E_Commerce.repositories.ProductsRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +29,12 @@ public class ProductsController {
     @Autowired
     private ProductsRepo productsRepo;
 
+    @Autowired
+    private KafkaTemplate<String, Products> kafkaTemplate;
+
+    @Value(value = "${kafka.productsTopic}")
+    private String topic;
+
     @GetMapping()
     List<Products> getProducts(){
         return productsRepo.findAll();
@@ -33,13 +42,22 @@ public class ProductsController {
 
     @PostMapping()
     Products createProducts(@RequestBody Products product){
+        System.out.println("Sending kafka message to sellers portal..." + topic + product);
+        kafkaTemplate.send(topic, product);
+        return product;        
+    }
+
+    @KafkaListener(topics = "${kafka.updateTopic}")
+    Products updateProductAfterValidation(Products product){
+        System.out.println("Storing into db after validation..."+product);
         return productsRepo.save(product);
     }
+
 
     @GetMapping("/{product_id}")
     Products getProductById(@PathVariable Integer product_id){
         return productsRepo.findById(product_id).get();
-    }    
+    }        
 
     @PostMapping("/{product_id}/category")
     Products addCategoriesByProductId(@PathVariable Integer product_id, @RequestBody Categories categories){

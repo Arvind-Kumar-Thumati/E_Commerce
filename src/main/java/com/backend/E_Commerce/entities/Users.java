@@ -20,6 +20,7 @@ public class Users {
     public Integer id;
     private String username;
     private String password;
+    private String emailId;
     private String salt;
     private String firstName;
     private String lastName;
@@ -72,6 +73,18 @@ public class Users {
         this.cartItems = cartItems;
         this.ordersets = ordersets;
         this.cartValue = cartValue;
+    }
+    public Users(String username, String password, String firstName, String lastName, String number, List<Addresses> addresses, List<CartItems> cartItems, List<Ordersets> ordersets, Float cartValue, String emailId){
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.number = number;        
+        this.addresses = addresses;
+        this.cartItems = cartItems;
+        this.ordersets = ordersets;
+        this.cartValue = cartValue;
+        this.emailId = emailId;
     }
     /*
     {

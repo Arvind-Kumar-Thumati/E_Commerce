@@ -36,6 +36,7 @@ public class Products {
     private Integer sellerId;
     private Integer stockAvailable;
     private String imageUrl;
+    private Integer verificationStatusId = 1;
     
     @ManyToMany(targetEntity = Categories.class, cascade = {CascadeType.MERGE ,CascadeType.DETACH })    
     @JoinTable(
@@ -84,6 +85,9 @@ public class Products {
     public List<Categories> getCategories() {
         return categories;
     }
+    public Integer getVerificationStatusId() {
+        return verificationStatusId;
+    }
 
     public void setId(Integer id) {
         this.id = id;
@@ -109,9 +113,14 @@ public class Products {
     public void setCategories(List<Categories> categories) {
         this.categories = categories;
     }
+    public void setVerificationStatusId(Integer verificationStatusId) {
+        this.verificationStatusId = verificationStatusId;
+    }
 
     @Override
     public String toString() {
-        return this.name + " " + this.id + " " + this.sellerId;
+        return "Products [categories=" + categories + ", id=" + id + ", imageUrl=" + imageUrl + ", name=" + name
+                + ", price=" + price + ", productCode=" + productCode + ", sellerId=" + sellerId + ", stockAvailable="
+                + stockAvailable + ", verificationStatusId=" + verificationStatusId + "]";
     }
 }

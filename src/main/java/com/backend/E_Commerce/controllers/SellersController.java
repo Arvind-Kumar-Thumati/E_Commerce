@@ -29,7 +29,7 @@ public class SellersController {
         return sellersRepo.findAll();
     }
 
-    @GetMapping("/{seller_id}}")
+    @GetMapping("/{seller_id}")
     Sellers getSellerById(@PathVariable Integer seller_id){
         return sellersRepo.findById(seller_id).get();
     }

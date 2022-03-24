@@ -23,6 +23,7 @@ public class Sellers {
     public Integer id;
     private String username;
     private String password;
+    private String emailId;
     private String name;
     private Float rating;
     private String salt;
@@ -100,6 +101,10 @@ public class Sellers {
         return products;
     }
 
+    public String getEmailId() {
+        return emailId;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -122,5 +127,9 @@ public class Sellers {
 
     public void setProducts(List<Products> products) {
         this.products = products;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
     }
 }
